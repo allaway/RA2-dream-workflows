@@ -149,7 +149,9 @@ steps:
       - id: entity_type
         valueFrom: "none"
       - id: goldstandard
-        valueFrom: "/data/project/RA2_DREAM/leaderboard.csv"
+        default:
+          class: File
+          location: "/data/project/RA2_DREAM/leaderboard.csv"
     out:
       - id: results
       - id: status
@@ -202,7 +204,9 @@ steps:
       - id: inputfile
         source: "#run_docker/predictions"
       - id: goldstandard
-        valueFrom: "/data/project/RA2_DREAM/leaderboard.csv"
+        default:
+          class: File
+          location: "/data/project/RA2_DREAM/leaderboard.csv"
       - id: check_validation_finished 
         source: "#check_status/finished"
     out:
