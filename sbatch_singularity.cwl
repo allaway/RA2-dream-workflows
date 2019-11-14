@@ -100,7 +100,7 @@ requirements:
               test_dir = args.test_dir
               # Format singularity command
               singularity_command = ['singularity exec',
-                                    '--contain',
+                                    '--containall',
                                     '--net',
                                     '-B',
                                     '{}:/train:ro'.format(train_dir),
