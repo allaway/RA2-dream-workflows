@@ -120,6 +120,7 @@ requirements:
                             '#SBATCH --output={submissionid}.txt',
                             '#SBATCH --error={submissionid}_errors.txt',
                             '#SBATCH --mem=8G',
+                            '#SBATCH --gres=gpu:1',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
                             'module load Singularity/2.6.1-GCC-5.4.0-2.26',
                             ' '.join(singularity_command)]
