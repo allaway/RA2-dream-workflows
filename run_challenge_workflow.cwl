@@ -100,7 +100,7 @@ steps:
       - id: train_dir
         valueFrom: "/data/project/RA2_DREAM/train"
       - id: test_dir
-        valueFrom: "/data/project/RA2_DREAM/test_teaderboard"
+        valueFrom: "/data/project/RA2_DREAM/test_leaderboard"
     out:
       - id: predictions
 
