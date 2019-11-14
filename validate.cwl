@@ -13,15 +13,17 @@ hints:
 inputs:
   - id: inputfile
     type: File
-  - id: goldstandard
-    type: File
+  #- id: goldstandard
+  #  type: File
   - id: entity_type
     type: string
 
 arguments:
   - valueFrom: $(inputs.inputfile.path)
     prefix: -s
-  - valueFrom: $(inputs.goldstandard.path)
+  #- valueFrom: $(inputs.goldstandard.path)
+  #  prefix: -g
+  - valueFrom: "/data/project/RA2_DREAM/leaderboard.csv"
     prefix: -g
   - valueFrom: results.json
     prefix: -r
