@@ -29,9 +29,6 @@ arguments:
     prefix: -e
 
 requirements:
-  - class: InitialWorkDirRequirement
-    listing:
-      - $(inputs.goldstandard)
   - class: InlineJavascriptRequirement
      
 outputs:
