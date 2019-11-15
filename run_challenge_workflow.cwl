@@ -148,10 +148,10 @@ steps:
       # From the docker run command
       - id: entity_type
         valueFrom: "none"
-      #- id: goldstandard
-      #  default:
-      #    class: File
-      #    location: "/data/project/RA2_DREAM/leaderboard.csv"
+      - id: goldstandard
+        default:
+          class: File
+          location: "/data/project/RA2_DREAM/leaderboard.csv"
     out:
       - id: results
       - id: status
