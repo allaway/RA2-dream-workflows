@@ -99,8 +99,11 @@ requirements:
               train_dir = args.train_dir
               test_dir = args.test_dir
               # Format singularity command
+              # --no-home
               singularity_command = ['singularity exec',
                                     '--net',
+                                    '--bind', '/cm/local/apps/cuda/libs',
+                                    '--nv',
                                     '-B',
                                     '{}:/train:ro'.format(train_dir),
                                     '-B',
@@ -120,6 +123,8 @@ requirements:
                             '#SBATCH --output={submissionid}.txt',
                             '#SBATCH --error={submissionid}_errors.txt',
                             '#SBATCH --mem=8G',
+                            '#SBATCH --gres=gpu:1',
+                            '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
                             'module load Singularity/2.6.1-GCC-5.4.0-2.26',
                             ' '.join(singularity_command)]
