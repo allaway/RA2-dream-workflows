@@ -105,6 +105,8 @@ requirements:
                                     '--bind', '/cm/local/apps/cuda/libs',
                                     '--nv',
                                     '-B',
+                                    '/data/scratch/thomas.yu@sagebionetworks.org/:/tmp:rw',
+                                    '-B',
                                     '{}:/train:ro'.format(train_dir),
                                     '-B',
                                     '{}:/test:ro'.format(test_dir),
