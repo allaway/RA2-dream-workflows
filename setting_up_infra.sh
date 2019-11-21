@@ -11,9 +11,10 @@ pip install pyslurm --user
 # you need to start the server first, which will be serving on some host and port
 # then use the client to actually run stuff
 screen
+source activate cwl
 #wes-server --port 8082 --backend=wes_service.toil_wes --opt extra=--clean=never
 # Can't use /data/user... for some reason, singularity pull doesn't like it
-wes-server --backend=wes_service.cwl_runner --opt runner=cwltool --opt extra=--singularity --opt extra=--cachedir=/home/thomas.yu@sagebionetworks.org/cache_workflows/ --opt extra=--rm-tmpdir --port 8082
+wes-server --backend=wes_service.cwl_runner --opt runner=cwltool --opt extra=--singularity --opt extra=--cachedir=/home/thomas.yu@sagebionetworks.org/cache_workflows/ --port 8082
 #Use the key sequence Ctrl-a + Ctrl-d to detach from the screen session.
 #Use the key sequence Ctrl-a + H to obtain logs
 
@@ -49,7 +50,7 @@ screen -S orchestrator
 # Export all the values you use in your .env file
 # these values are explained above
 export WES_ENDPOINT=http://localhost:8082/ga4gh/wes/v1
-export WES_SHARED_DIR_PROPERTY=/data/user/thomas.yu@sagebionetworks.org/orchestrator/
+export WES_SHARED_DIR_PROPERTY=$USER_DATA/orchestrator/
 export SYNAPSE_USERNAME=ra2dreamservice
 export SYNAPSE_PASSWORD=xxxxxx
 export WORKFLOW_OUTPUT_ROOT_ENTITY_ID=syn20803806
@@ -57,3 +58,5 @@ export WORKFLOW_OUTPUT_ROOT_ENTITY_ID=syn20803806
 export EVALUATION_TEMPLATES='{"9614319": "syn20976528"}'
 export COMPOSE_PROJECT_NAME=workflow_orchestrator
 export MAX_CONCURRENT_WORKFLOWS=4
+
+java -jar 

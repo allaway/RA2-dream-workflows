@@ -99,9 +99,9 @@ requirements:
               train_dir = args.train_dir
               test_dir = args.test_dir
               # Format singularity command
-              # --no-home
               singularity_command = ['singularity exec',
                                     '--net',
+                                    '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
                                     '--nv',
                                     '-B',
