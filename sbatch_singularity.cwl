@@ -124,7 +124,7 @@ requirements:
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}.txt',
                             '#SBATCH --error={submissionid}_errors.txt',
-                            '#SBATCH --mem=8G',
+                            '#SBATCH --mem=32G',
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
