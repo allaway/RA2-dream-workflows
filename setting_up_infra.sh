@@ -75,7 +75,7 @@ java -jar WorkflowOrchestrator-1.0-SNAPSHOT-jar-with-dependencies.jar
 # Example slurm bash script
 
 #!/bin/bash
-#SBATCH --partition=express
+#SBATCH --partition=pascalnodes
 #SBATCH --job-name=test
 #SBATCH --time=02:00:00
 #SBATCH --mail-type=FAIL
@@ -86,4 +86,4 @@ java -jar WorkflowOrchestrator-1.0-SNAPSHOT-jar-with-dependencies.jar
 #SBATCH --gres=gpu:1
 #SBATCH --account=ra2_dream
 module load Singularity/2.6.1-GCC-5.4.0-2.26
-singularity exec --net --no-home --bind /cm/local/apps/cuda/libs --nv -B /data/scratch/thomas.yu@sagebionetworks.org/:/tmp:rw -B /data/project/RA2_DREAM/train:/train:ro -B /data/project/RA2_DREAM/test_leaderboard:/test:ro -B /home/thomas.yu@sagebionetworks.org/cache_workflows/3eed8f8f3fa5d73b971aea0ca1afa114:/output:rw docker://docker.synapse.org/syn20545112/example-model@sha256:6cc6dd92462b946fe5fbe0020055e63ce712c70e70fc327207cca6b26954b823 /run.sh
+singularity exec --net --no-home --bind /cm/local/apps/cuda/libs --nv -B /data/project/RA2_DREAM/train:/train:ro -B /data/project/RA2_DREAM/test_leaderboard:/test:ro -B $HOME/test:/output:rw docker://docker.synapse.org/syn20545112/example-model@sha256:6cc6dd92462b946fe5fbe0020055e63ce712c70e70fc327207cca6b26954b823 /run.sh

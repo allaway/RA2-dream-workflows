@@ -117,7 +117,7 @@ requirements:
               submissionid = str(args.submissionid)
               # Format shell script
               shell_file = ['#!/bin/bash',
-                            '#SBATCH --partition=express',
+                            '#SBATCH --partition=pascalnodes',
                             '#SBATCH --job-name={submissionid}',
                             '#SBATCH --time=02:00:00',
                             '#SBATCH --mail-type=FAIL',
