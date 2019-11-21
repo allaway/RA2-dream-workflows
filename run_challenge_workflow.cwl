@@ -31,7 +31,7 @@ outputs: []
 steps:
 
   notify_participants:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v1.6/notification_email.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.1/notification_email.cwl
     in:
       - id: submissionid
         source: "#submissionId"
