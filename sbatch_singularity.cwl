@@ -124,6 +124,7 @@ requirements:
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}.txt',
                             '#SBATCH --error={submissionid}_errors.txt',
+                            '#SBATCH --cpus-per-task=8',
                             '#SBATCH --mem=32G',
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
