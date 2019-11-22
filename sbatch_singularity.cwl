@@ -119,7 +119,7 @@ requirements:
               shell_file = ['#!/bin/bash',
                             '#SBATCH --partition=pascalnodes',
                             '#SBATCH --job-name={submissionid}',
-                            '#SBATCH --time=24:00:00',
+                            '#SBATCH --time=23:59:00',
                             '#SBATCH --mail-type=FAIL',
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}.txt',
