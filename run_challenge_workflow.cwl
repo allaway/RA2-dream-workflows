@@ -42,7 +42,7 @@ steps:
     out: []
 
   get_docker_submission:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/get_submission_docker.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/get_submission.cwl
     in:
       - id: submissionid
         source: "#submissionId"
@@ -51,7 +51,10 @@ steps:
     out:
       - id: docker_repository
       - id: docker_digest
-      - id: entityid
+      - id: entity_type
+      - id: filepath
+      - id: results
+      - id: entity_id
 
   validate_docker:
     run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/validate_docker.cwl
