@@ -115,7 +115,7 @@ steps:
       - id: parentid
         source: "#adminUploadSynId"
       - id: used_entity
-        source: "#get_docker_submission/entityid"
+        source: "#get_docker_submission/entity_id"
       - id: executed_entity
         source: "#workflowSynapseId"
       - id: synapse_config
