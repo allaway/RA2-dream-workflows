@@ -4,7 +4,7 @@
 #
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /share/apps/rc/software/Anaconda3/5.3.1/bin/python
+baseCommand: /home/thomas.yu@sagebionetworks.org/.conda/envs/cwl/bin/python3
 
 inputs:
   - id: submissionid
