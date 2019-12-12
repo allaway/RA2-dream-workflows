@@ -104,6 +104,7 @@ requirements:
                                     '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
                                     '--nv',
+                                    '-B', '/scratch',
                                     '-B',
                                     '/data/scratch/thomas.yu@sagebionetworks.org/:/tmp:rw',
                                     '-B',
