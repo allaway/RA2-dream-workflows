@@ -101,11 +101,11 @@ requirements:
               # Format singularity command
               submissionid = str(args.submissionid)
 
-              #singularity_pull = ['singularity pull',
-              #                    '--name', submissionid + ".img",
-              #                    docker_image]
+              singularity_pull = ['singularity pull',
+                                  '--name', submissionid + ".img",
+                                  docker_image]
 
-              singularity_command = ['singularity exec',
+              singularity_command = ['singularity run',
                                     '--net',
                                     '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
@@ -119,9 +119,9 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    #'/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
-                                    docker_image,
-                                    '/run.sh']
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img']
+                                    #docker_image,
+                                    #'/run.sh']
               # Format shell script
               shell_file = ['#!/bin/bash',
                             '#SBATCH --partition=pascalnodes',
@@ -142,7 +142,8 @@ requirements:
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            #' '.join(singularity_pull),
+                            ' '.join(singularity_pull),
+                            'chmod +x ' + '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
                             ' '.join(singularity_command)]
 
               shell_text = "\n".join(shell_file).format(submissionid=submissionid)
