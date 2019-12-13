@@ -102,7 +102,7 @@ requirements:
               submissionid = str(args.submissionid)
 
               singularity_pull = ['singularity pull',
-                                  '--name', submissionid,
+                                  '--name', submissionid + ".img",
                                   docker_image]
 
               singularity_command = ['singularity exec',
@@ -119,7 +119,7 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.simg'
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img'
                                     #docker_image,
                                     '/run.sh']
               # Format shell script
