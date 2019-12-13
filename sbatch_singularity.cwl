@@ -99,6 +99,12 @@ requirements:
               train_dir = args.train_dir
               test_dir = args.test_dir
               # Format singularity command
+              submissionid = str(args.submissionid)
+
+              singularity_pull = ['singularity pull',
+                                  '--name', submissionid,
+                                  docker_image]
+
               singularity_command = ['singularity exec',
                                     '--net',
                                     '--no-home',
@@ -113,9 +119,9 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    docker_image,
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.simg'
+                                    #docker_image,
                                     '/run.sh']
-              submissionid = str(args.submissionid)
               # Format shell script
               shell_file = ['#!/bin/bash',
                             '#SBATCH --partition=pascalnodes',
@@ -131,6 +137,7 @@ requirements:
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
                             'module load Singularity/2.6.1-GCC-5.4.0-2.26',
+                            ' '.join(singularity_pull),
                             ' '.join(singularity_command)]
 
               shell_text = "\n".join(shell_file).format(submissionid=submissionid)
