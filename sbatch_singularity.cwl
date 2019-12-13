@@ -119,9 +119,10 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img']
-                                    #docker_image,
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
                                     '/run.sh']
+                                    #docker_image,
+
               # Format shell script
               shell_file = ['#!/bin/bash',
                             '#SBATCH --partition=pascalnodes',
