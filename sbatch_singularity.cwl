@@ -136,6 +136,7 @@ requirements:
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
+                            'source /home/thomas.yu@sagebionetworks.org/.bashrc',
                             'module load Singularity/2.6.1-GCC-5.4.0-2.26',
                             ' '.join(singularity_pull),
                             ' '.join(singularity_command)]
