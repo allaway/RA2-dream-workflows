@@ -119,8 +119,8 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    #'/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
-                                    docker_image,
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
+                                    #docker_image,
                                     '/run.sh']
 
               # Format shell script
@@ -143,7 +143,7 @@ requirements:
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            #' '.join(singularity_pull),
+                            ' '.join(singularity_pull),
                             #'chmod +x ' + '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
                             ' '.join(singularity_command)]
 
