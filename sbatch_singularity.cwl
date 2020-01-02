@@ -105,7 +105,7 @@ requirements:
                                   '--name', submissionid + ".img",
                                   docker_image]
 
-              singularity_command = ['singularity exec',
+              singularity_command = ['singularity run',
                                     '--net',
                                     '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
@@ -120,8 +120,7 @@ requirements:
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
                                     '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
-                                    #docker_image,
-                                    '/run.sh']
+                                    #docker_image]
 
               # Format shell script
               shell_file = ['#!/bin/bash',
