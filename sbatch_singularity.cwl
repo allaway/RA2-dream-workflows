@@ -119,7 +119,7 @@ requirements:
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif',
+                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif']
                                     #docker_image]
 
               # Format shell script
