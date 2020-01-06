@@ -107,6 +107,7 @@ requirements:
 
               singularity_command = ['singularity run',
                                     '--net',
+                                    '--network=none',
                                     '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
                                     '--nv',
