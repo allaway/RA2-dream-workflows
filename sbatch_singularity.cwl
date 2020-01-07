@@ -110,6 +110,8 @@ requirements:
                                     '--network=none',
                                     '--no-home',
                                     '--bind', '/cm/local/apps/cuda/libs',
+                                    '--bind', '/share/apps/rc/software/cuDNN/7.6.2.24-CUDA-10.1.243/lib64',
+                                    '--bind', '/cm/shared/apps/cuda10.0/toolkit/10.0.130/lib64',
                                     '--nv',
                                     '-B', '/scratch',
                                     '-B',
