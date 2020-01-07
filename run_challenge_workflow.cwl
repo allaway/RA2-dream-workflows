@@ -238,7 +238,7 @@ steps:
       - id: results
         source: "#scoring/results"
       - id: private_annotations
-        valueFrom: ['sc2_joint_weighted_sum_rmse', 'sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_joint_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
+        default: ['sc2_joint_weighted_sum_rmse', 'sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_joint_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
     out: []
 
   annotate_submission_with_output:
