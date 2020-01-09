@@ -6,3 +6,5 @@ COPY create-submission.py /create-submission.py
 COPY run.sh /run.sh
 
 RUN chmod +x /run.sh
+
+ENTRYPOINT [ "/run.sh" ]
