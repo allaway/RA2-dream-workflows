@@ -139,7 +139,6 @@ requirements:
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
-                            'module load Singularity/2.6.1-GCC-5.4.0-2.26',
                             'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
                             'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
