@@ -127,9 +127,9 @@ requirements:
 
               # Format shell script
               shell_file = ['#!/bin/bash',
-                            '#SBATCH --partition=pascalnodes',
+                            '#SBATCH --partition=pascalnodes-medium',
                             '#SBATCH --job-name={submissionid}',
-                            '#SBATCH --time=12:00:00',
+                            '#SBATCH --time=48:00:00',
                             '#SBATCH --mail-type=FAIL',
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}.txt',
@@ -139,7 +139,6 @@ requirements:
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
-                            'module load Singularity/2.6.1-GCC-5.4.0-2.26',
                             'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
                             'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
