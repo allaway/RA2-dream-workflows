@@ -167,7 +167,7 @@ steps:
       - id: goldstandard
         default:
           class: File
-          location: "/data/project/RA2_DREAM/leaderboard.csv"
+          location: "/data/project/RA2_DREAM/leaderboard_fastqueue.csv"
     out:
       - id: results
       - id: status
