@@ -99,7 +99,7 @@ steps:
     out: [finished]
 
   run_docker:
-    run: sbatch_singularity.cwl
+    run: fastlane_sbatch.cwl
     in:
       - id: docker_repository
         source: "#get_docker_submission/docker_repository"
