@@ -132,8 +132,8 @@ requirements:
                             '#SBATCH --time=1:00:00',
                             '#SBATCH --mail-type=FAIL',
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
-                            '#SBATCH --output={submissionid}.txt',
-                            '#SBATCH --error={submissionid}_errors.txt',
+                            '#SBATCH --output={submissionid}_stdout.txt',
+                            '#SBATCH --error={submissionid}_stderr.txt',
                             '#SBATCH --cpus-per-task=8',
                             '#SBATCH --mem=64G',
                             '#SBATCH --gres=gpu:1',
@@ -155,8 +155,8 @@ requirements:
               # Look for existing job, if job doesn't exist, start the job
               running = check_existing_job(submissionid)
 
-              std_out_file = submissionid + '.txt'
-              std_err_file = submissionid + '_errors.txt'
+              std_out_file = submissionid + '_stdout.txt'
+              std_err_file = submissionid + '_stderr.txt'
               # Start batch job with subprocess if log doesn't exist
               # or job isn't running
               if not running and not os.path.exists(std_out_file):
