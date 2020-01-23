@@ -30,6 +30,17 @@ outputs: []
 
 steps:
 
+  notify_participants:
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/notification_email.cwl
+    in:
+      - id: submissionid
+        source: "#submissionId"
+      - id: synapse_config
+        source: "#synapseConfig"
+      - id: parentid
+        source: "#submitterUploadSynId"
+    out: []
+
   set_permissions:
     run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/set_permissions.cwl
     in:
