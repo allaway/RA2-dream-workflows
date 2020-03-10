@@ -4,7 +4,7 @@
 #
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: python
+baseCommand: python3
 
 hints:
   DockerRequirement:
@@ -27,7 +27,7 @@ requirements:
     listing:
       - entryname: switch_annotation.py
         entry: |
-          #!/usr/bin/env python
+          #!/usr/bin/env python3
           import argparse
           import json
           parser = argparse.ArgumentParser()
@@ -36,7 +36,7 @@ requirements:
           args = parser.parse_args()
           
           with open(args.json, "r") as input:
-            result = json.load(f)
+            result = json.load(input)
 
           columns = ['sc2_total_weighted_sum_error', 'sc2_joint_weighted_sum_rmse', 
                      'sc3_hand_weighted_sum_rmse', 'sc3_total_weighted_sum_error',
