@@ -220,7 +220,7 @@ steps:
       - id: results
       
   switch_annotations:
-    run: score.cwl
+    run: switch_annotation.cwl
     in:
       - id: inputjson
         source: "#scoring/results"
