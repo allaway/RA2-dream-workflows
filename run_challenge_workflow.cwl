@@ -219,6 +219,14 @@ steps:
     out:
       - id: results
       
+  switch_annotations:
+    run: score.cwl
+    in:
+      - id: inputjson
+        source: "#scoring/results"
+    out:
+      - id: results
+
   score_email:
     run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/score_email.cwl
     in:
@@ -227,7 +235,7 @@ steps:
       - id: synapse_config
         source: "#synapseConfig"
       - id: results
-        source: "#scoring/results"
+        source: "#switch_annotations/results"
       - id: private_annotations
         default: ['sc2_joint_weighted_sum_rmse', 'sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_joint_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
     out: []
@@ -238,7 +246,7 @@ steps:
       - id: submissionid
         source: "#submissionId"
       - id: annotation_values
-        source: "#scoring/results"
+        source: "#switch_annotations/results"
       - id: to_public
         default: true
       - id: force_change_annotation_acl
