@@ -123,7 +123,6 @@ requirements:
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
                                     '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif']
-                                    #docker_image]
 
               # Format shell script
               shell_file = ['#!/bin/bash',
@@ -131,12 +130,12 @@ requirements:
                             '#SBATCH --job-name={submissionid}',
                             '#SBATCH --time=04:00:00',
                             '#SBATCH --ntasks=1'
+                            '#SBATCH --cpus-per-task=1',
+                            '#SBATCH --mem=4G',
                             '#SBATCH --mail-type=FAIL',
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}_stdout.txt',
                             '#SBATCH --error={submissionid}_stderr.txt',
-                            '#SBATCH --cpus-per-task=1',
-                            '#SBATCH --mem=4G',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
                             'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
@@ -144,8 +143,37 @@ requirements:
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            ' '.join(singularity_pull),
-                            #'chmod +x ' + '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
+                            ' '.join(singularity_pull)]
+
+              # pull singularity container is separate environment
+              shell_text = "\n".join(shell_file).format(submissionid=submissionid)
+              with open(submissionid + "_pull.sh", "w") as submission_sh:
+                  submission_sh.write(shell_text)
+              sbatch_command = ['sbatch', submissionid + "_pull.sh"]
+              subprocess.check_call(sbatch_command)
+              time.sleep(5)
+              while not os.path.exists('/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
+                  time.sleep(10)
+
+              # Format shell script
+              shell_file = ['#!/bin/bash',
+                            '#SBATCH --partition=pascalnodes-medium',
+                            '#SBATCH --job-name={submissionid}',
+                            '#SBATCH --time=12:00:00',
+                            '#SBATCH --mail-type=FAIL',
+                            '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
+                            '#SBATCH --output={submissionid}_stdout.txt',
+                            '#SBATCH --error={submissionid}_stderr.txt',
+                            '#SBATCH --cpus-per-task=8',
+                            '#SBATCH --mem=64G',
+                            '#SBATCH --gres=gpu:1',
+                            '#SBATCH --account=ra2_dream',
+                            'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
+                            'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
+                            'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             ' '.join(singularity_command)]
 
               shell_text = "\n".join(shell_file).format(submissionid=submissionid)
