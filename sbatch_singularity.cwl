@@ -123,13 +123,15 @@ requirements:
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
                                     '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif']
-                                    #docker_image]
 
               # Format shell script
               shell_file = ['#!/bin/bash',
                             '#SBATCH --partition=short',
                             '#SBATCH --job-name={submissionid}',
-                            '#SBATCH --time=12:00:00',
+                            '#SBATCH --time=04:00:00',
+                            '#SBATCH --ntasks=1'
+                            '#SBATCH --cpus-per-task=1',
+                            '#SBATCH --mem=4G',
                             '#SBATCH --mail-type=FAIL',
                             '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
                             '#SBATCH --output={submissionid}_stdout.txt',
@@ -151,7 +153,7 @@ requirements:
               subprocess.check_call(sbatch_command)
               time.sleep(5)
               while not os.path.exists('/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
-                time.sleep(10)
+                  time.sleep(10)
 
               # Format shell script
               shell_file = ['#!/bin/bash',
