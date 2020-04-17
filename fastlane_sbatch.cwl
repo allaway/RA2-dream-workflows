@@ -123,7 +123,40 @@ requirements:
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
                                     '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif']
-                                    #docker_image]
+
+              # Format shell script
+              shell_file = ['#!/bin/bash',
+                            '#SBATCH --partition=short',
+                            '#SBATCH --job-name={submissionid}_pull',
+                            '#SBATCH --time=04:00:00',
+                            '#SBATCH --ntasks=1'
+                            '#SBATCH --cpus-per-task=1',
+                            '#SBATCH --mem=4G',
+                            '#SBATCH --mail-type=FAIL',
+                            '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
+                            '#SBATCH --output={submissionid}_pull_stdout.txt',
+                            '#SBATCH --error={submissionid}_pull_stderr.txt',
+                            '#SBATCH --account=ra2_dream',
+                            'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
+                            'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
+                            'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            ' '.join(singularity_pull)]
+
+              # pull singularity container is separate environment
+              shell_text = "\n".join(shell_file).format(submissionid=submissionid)
+              with open(submissionid + "_pull.sh", "w") as submission_sh:
+                  submission_sh.write(shell_text)
+              print("pulling")
+              sbatch_command = ['sbatch', submissionid + "_pull.sh"]
+              subprocess.check_call(sbatch_command)
+              time.sleep(5)
+              print("submitted")
+              while not os.path.exists('/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
+                  time.sleep(10)
+                  print("running")
 
               # Format shell script
               shell_file = ['#!/bin/bash',
@@ -144,8 +177,6 @@ requirements:
                             'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
                             'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            ' '.join(singularity_pull),
-                            #'chmod +x ' + '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.img',
                             ' '.join(singularity_command)]
 
               shell_text = "\n".join(shell_file).format(submissionid=submissionid)
