@@ -157,6 +157,7 @@ requirements:
               while not os.path.exists('/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
                   time.sleep(10)
                   print("running")
+              time.sleep(60)
 
               # Format shell script
               shell_file = ['#!/bin/bash',
