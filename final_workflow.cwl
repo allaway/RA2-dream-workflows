@@ -277,6 +277,8 @@ steps:
         valueFrom: "/data/project/RA2_DREAM/train"
       - id: test_dir
         valueFrom: "/data/project/RA2_DREAM/test_final"
+      - id: previous
+        source: "#annotate_submission_with_output/finished"
     out:
       - id: predictions
 
