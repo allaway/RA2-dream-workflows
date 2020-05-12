@@ -274,9 +274,9 @@ steps:
       - id: synapse_config
         source: "#synapseConfig"
       - id: train_dir
-        valueFrom: "/data/project/RA2_DREAM/final_train"
+        valueFrom: "/data/project/RA2_DREAM/train"
       - id: test_dir
-        valueFrom: "/data/project/RA2_DREAM/final_test_leaderboard"
+        valueFrom: "/data/project/RA2_DREAM/test_final"
     out:
       - id: predictions
 
@@ -327,7 +327,7 @@ steps:
       - id: goldstandard
         default:
           class: File
-          location: "/data/project/RA2_DREAM/final_leaderboard.csv"
+          location: "/data/project/RA2_DREAM/test.csv"
     out:
       - id: results
       - id: status
@@ -384,7 +384,7 @@ steps:
       - id: goldstandard
         default:
           class: File
-          location: "/data/project/RA2_DREAM/final_leaderboard.csv"
+          location: "/data/project/RA2_DREAM/test.csv"
       - id: check_validation_finished
         source: "#final_check_status/finished"
     out:
