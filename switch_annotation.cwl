@@ -13,7 +13,7 @@ hints:
 inputs:
   - id: inputjson
     type: File
-  - id: leaderboard
+  - id: leaderboard?
     type: boolean
 
 arguments:
