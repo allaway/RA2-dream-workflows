@@ -224,6 +224,8 @@ steps:
     in:
       - id: inputjson
         source: "#scoring/results"
+      - id: leaderboard
+        default: true
     out:
       - id: results
 
