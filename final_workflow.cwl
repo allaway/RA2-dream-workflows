@@ -420,5 +420,5 @@ steps:
       - id: private_annotations
         default: ['sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
       - id: previous
-        source: "#final_annotate_submission_with_output/finish"
+        source: "#final_annotate_submission_with_output/finished"
     out: []
