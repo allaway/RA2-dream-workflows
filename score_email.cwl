@@ -60,11 +60,10 @@ requirements:
           evaluation = syn.getEvaluation(sub.evaluationId)
           with open(args.results) as json_data:
             annots = json.load(json_data)
-          if annots.get('prediction_file_status') is None:
-            raise Exception("score.cwl must return prediction_file_status as a json key")
-          status = annots['prediction_file_status']
+
+          status = annots['leaderboard_prediction_file_status']
           if status == "SCORED":
-              del annots['prediction_file_status']
+              del annots['leaderboard_prediction_file_status']
               subject = "Submission to '%s' scored!" % evaluation.name
               if len(annots) == 0:
                   message = "Your submission has been scored."
