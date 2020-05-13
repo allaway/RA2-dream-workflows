@@ -13,8 +13,8 @@ hints:
 inputs:
   - id: inputjson
     type: File
-  - id: leaderboard?
-    type: boolean
+  - id: leaderboard
+    type: boolean?
 
 arguments:
   - valueFrom: switch_annotation.py

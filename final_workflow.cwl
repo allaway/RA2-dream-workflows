@@ -357,7 +357,6 @@ steps:
     out:
       - id: results
 
-  # TODO: Must also update the scoring headers to append "final"
   final_switch_annotations:
     run: switch_annotation.cwl
     in:
