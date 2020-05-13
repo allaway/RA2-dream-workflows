@@ -205,41 +205,6 @@ steps:
         source: "#validation_email/finished"
     out: [finished]
 
-  scoring:
-    run: score.cwl
-    in:
-      - id: inputfile
-        source: "#run_docker/predictions"
-      - id: goldstandard
-        default:
-          class: File
-          location: "/data/project/RA2_DREAM/leaderboard.csv"
-      - id: check_validation_finished
-        source: "#check_status/finished"
-    out:
-      - id: results
-      
-  switch_annotations:
-    run: switch_annotation.cwl
-    in:
-      - id: inputjson
-        source: "#scoring/results"
-    out:
-      - id: results
-
-  score_email:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/score_email.cwl
-    in:
-      - id: submissionid
-        source: "#submissionId"
-      - id: synapse_config
-        source: "#synapseConfig"
-      - id: results
-        source: "#switch_annotations/results"
-      - id: private_annotations
-        default: ['sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
-    out: []
-
   annotate_submission_with_output:
     run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/annotate_submission.cwl
     in:
@@ -417,3 +382,42 @@ steps:
       - id: previous_annotation_finished
         source: "#final_annotate_validation_with_output/finished"
     out: [finished]
+
+  # Move leaderboard scoring after running of test leaderboard so
+  # scores are sent back at the very end
+  scoring:
+    run: score.cwl
+    in:
+      - id: inputfile
+        source: "#run_docker/predictions"
+      - id: goldstandard
+        default:
+          class: File
+          location: "/data/project/RA2_DREAM/leaderboard.csv"
+      - id: check_validation_finished
+        source: "#final_check_status/finished"
+    out:
+      - id: results
+
+  switch_annotations:
+    run: switch_annotation.cwl
+    in:
+      - id: inputjson
+        source: "#scoring/results"
+      - id: leaderboard
+        default: true
+    out:
+      - id: results
+
+  score_email:
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/score_email.cwl
+    in:
+      - id: submissionid
+        source: "#submissionId"
+      - id: synapse_config
+        source: "#synapseConfig"
+      - id: results
+        source: "#switch_annotations/results"
+      - id: private_annotations
+        default: ['sc2_hand_weighted_sum_rmse', 'sc2_foot_weighted_sum_rmse', 'sc3_hand_weighted_sum_rmse', 'sc3_foot_weighted_sum_rmse']
+    out: []
