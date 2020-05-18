@@ -259,7 +259,7 @@ steps:
       - id: status
         source: "#validation/status"
       - id: parentid
-        source: "#submitterUploadSynId"
+        source: "#adminUploadSynId"
       - id: synapse_config
         source: "#synapseConfig"
       - id: train_dir
