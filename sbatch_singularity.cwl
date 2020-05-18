@@ -170,7 +170,7 @@ requirements:
                             '#SBATCH --output={submissionid}_stdout.txt',
                             '#SBATCH --error={submissionid}_stderr.txt',
                             '#SBATCH --cpus-per-task=8',
-                            '#SBATCH --mem=64G',
+                            '#SBATCH --mem=128G',
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
                             'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
