@@ -13,6 +13,8 @@ hints:
 inputs:
   - id: inputjson
     type: File
+  - id: leaderboard
+    type: boolean?
 
 arguments:
   - valueFrom: switch_annotation.py
@@ -20,6 +22,8 @@ arguments:
     prefix: -j
   - valueFrom: results.json
     prefix: -r
+  - valueFrom: $(inputs.leaderboard)
+    prefix: -l
 
 requirements:
   - class: InlineJavascriptRequirement
@@ -33,6 +37,8 @@ requirements:
           parser = argparse.ArgumentParser()
           parser.add_argument("-j", "--json", required=True, help="Json input to switch")
           parser.add_argument("-r", "--results", required=True, help="Switched json")
+          parser.add_argument("-l", "--leaderboard", action="store_true")
+
           args = parser.parse_args()
           
           with open(args.json, "r") as input:
@@ -55,6 +61,9 @@ requirements:
                       'sc2_joint_weighted_sum_rmse': result['sc3_joint_weighted_sum_rmse'],
                       'sc2_foot_weighted_sum_rmse': result['sc3_foot_weighted_sum_rmse']}
           result.update(new_score)
+          if args.leaderboard:
+            items = result.items()
+            result = {"leaderboard_" + key: value for key, value in items}
           with open(args.results, 'w') as o:
             o.write(json.dumps(result))
      
