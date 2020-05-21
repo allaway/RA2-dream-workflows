@@ -23,8 +23,8 @@ inputs:
     type: string
   - id: test_dir
     type: string
-  - id: previous?
-    type: boolean
+  - id: previous
+    type: boolean?
 
 arguments: 
   - valueFrom: rundocker.py
