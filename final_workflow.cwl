@@ -43,6 +43,19 @@ steps:
         valueFrom: "download"
     out: []
 
+  set_admin_permissions:
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/set_permissions.cwl
+    in:
+      - id: entityid
+        source: "#adminUploadSynId"
+      - id: synapse_config
+        source: "#synapseConfig"
+      - id: principalid
+        valueFrom: "3392644"
+      - id: permissions
+        valueFrom: "download"
+    out: []
+
   get_docker_submission:
     run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/synapse-docker/get_submission.cwl
     in:
