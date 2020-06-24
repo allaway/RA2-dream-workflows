@@ -51,7 +51,7 @@ steps:
       - id: synapse_config
         source: "#synapseConfig"
       - id: principalid
-        valueFrom: "3392644"
+        valueFrom: "3392403"
       - id: permissions
         valueFrom: "download"
     out: []
