@@ -20,7 +20,7 @@ export WES_API_PROTO=http
 
 #wes-server --port 8082 --backend=wes_service.toil_wes --opt extra=--clean=never
 # Can't use /data/user... for some reason, singularity pull doesn't like it
-wes-server --backend=wes_service.cwl_runner --opt runner=cwltool --opt extra=--singularity --opt extra=--cachedir=$HOME/cache_workflows/ --port 8082
+wes-server --backend=wes_service.cwl_runner --opt runner=cwltool --opt extra=--singularity --opt extra=--cachedir=$USER_DATA/cache_workflows/ --port 8082
 #Use the key sequence Ctrl-a + Ctrl-d to detach from the screen session.
 #Use the key sequence Ctrl-a + H to obtain logs
 
