@@ -4,6 +4,7 @@ conda create --name cwl python=3
 source activate cwl
 pip install wes-service --user
 pip install cwltool --user
+pip install Cython --user
 pip install pyslurm --user
 # pip install toil[all]
 
@@ -46,7 +47,7 @@ wes-client scoring_harness_workflow.cwl scoring_harness_workflow.yaml  --attachm
 # export TMPDIR=$USER_DATA
 # export SINGULARITY_CACHEDIR=$USER_SCRATCH/tmp
 # export SINGULARITY_PULLFOLDER=$USER_SCRATCH/tmp
-# export SINGULARITY_TEMPDIR=/data/scratch/thomas.yu@sagebionetworks.org/
+# export SINGULARITY_TEMPDIR=/data/scratch/robert.allaway@sagebionetworks.org/
 
 
 # curl localhost:8082/ga4gh/wes/v1/runs/<jobid>/cancel
@@ -79,7 +80,7 @@ java -jar WorkflowOrchestrator-1.0-SNAPSHOT-jar-with-dependencies.jar
 #SBATCH --job-name=test
 #SBATCH --time=02:00:00
 #SBATCH --mail-type=FAIL
-#SBATCH --mail-user=thomas.yu@sagebionetworks.org
+#SBATCH --mail-user=robert.allaway@sagebionetworks.org
 #SBATCH --output=test.txt
 #SBATCH --error=test_errors.txt
 #SBATCH --mem=8G
