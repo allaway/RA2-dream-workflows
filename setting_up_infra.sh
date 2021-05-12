@@ -4,6 +4,7 @@ conda create --name cwl python=3
 source activate cwl
 pip install wes-service --user
 pip install cwltool --user
+pip install Cython --user
 pip install pyslurm --user
 # pip install toil[all]
 
