@@ -4,7 +4,7 @@
 #
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /home/thomas.yu@sagebionetworks.org/.conda/envs/cwl/bin/python3
+baseCommand: /home/robert.allaway@sagebionetworks.org/.conda/envs/cwl/bin/python3
 
 inputs:
   - id: submissionid
@@ -117,14 +117,14 @@ requirements:
                                     '--nv',
                                     '-B', '/scratch',
                                     '-B',
-                                    '/data/scratch/thomas.yu@sagebionetworks.org/:/tmp:rw',
+                                    '/data/scratch/robert.allaway@sagebionetworks.org/:/tmp:rw',
                                     '-B',
                                     '{}:/train:ro'.format(train_dir),
                                     '-B',
                                     '{}:/test:ro'.format(test_dir),
                                     '-B',
                                     '{}:/output:rw'.format(output_dir),
-                                    '/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif']
+                                    '/data/user/robert.allaway@sagebionetworks.org/.singularity/' + submissionid + '.sif']
 
               # Format shell script
               shell_file = ['#!/bin/bash',
@@ -135,16 +135,16 @@ requirements:
                             '#SBATCH --cpus-per-task=1',
                             '#SBATCH --mem=4G',
                             '#SBATCH --mail-type=FAIL',
-                            '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
+                            '#SBATCH --mail-user=robert.allaway@sagebionetworks.org',
                             '#SBATCH --output={submissionid}_pull_stdout.txt',
                             '#SBATCH --error={submissionid}_pull_stderr.txt',
                             '#SBATCH --account=ra2_dream',
-                            'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
-                            'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
-                            'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'source /home/robert.allaway@sagebionetworks.org/.bash_profile',
+                            'export TMPDIR=/data/user/robert.allaway@sagebionetworks.org',
+                            'export SINGULARITY_CACHEDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_PULLFOLDER=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_LOCALCACHEDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_TMPDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
                             ' '.join(singularity_pull)]
 
               # pull singularity container is separate environment
@@ -156,7 +156,7 @@ requirements:
               subprocess.check_call(sbatch_command)
               time.sleep(5)
               print("submitted")
-              while not os.path.exists('/data/user/thomas.yu@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
+              while not os.path.exists('/data/user/robert.allaway@sagebionetworks.org/.singularity/' + submissionid + '.sif'):
                   time.sleep(10)
                   print("running")
               time.sleep(60)
@@ -167,19 +167,19 @@ requirements:
                             '#SBATCH --job-name={submissionid}',
                             '#SBATCH --time=4:00:00',
                             '#SBATCH --mail-type=FAIL',
-                            '#SBATCH --mail-user=thomas.yu@sagebionetworks.org',
+                            '#SBATCH --mail-user=robert.allaway@sagebionetworks.org',
                             '#SBATCH --output={submissionid}_stdout.txt',
                             '#SBATCH --error={submissionid}_stderr.txt',
                             '#SBATCH --cpus-per-task=8',
                             '#SBATCH --mem=64G',
                             '#SBATCH --gres=gpu:1',
                             '#SBATCH --account=ra2_dream',
-                            'source /home/thomas.yu@sagebionetworks.org/.bash_profile',
-                            'export TMPDIR=/data/user/thomas.yu@sagebionetworks.org',
-                            'export SINGULARITY_CACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_PULLFOLDER=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_LOCALCACHEDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
-                            'export SINGULARITY_TMPDIR=/data/user/thomas.yu@sagebionetworks.org/.singularity',
+                            'source /home/robert.allaway@sagebionetworks.org/.bash_profile',
+                            'export TMPDIR=/data/user/robert.allaway@sagebionetworks.org',
+                            'export SINGULARITY_CACHEDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_PULLFOLDER=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_LOCALCACHEDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
+                            'export SINGULARITY_TMPDIR=/data/user/robert.allaway@sagebionetworks.org/.singularity',
                             ' '.join(singularity_command)]
 
               shell_text = "\n".join(shell_file).format(submissionid=submissionid)
